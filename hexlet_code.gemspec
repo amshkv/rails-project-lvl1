@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'A small analogue of simple_form gem from a student of Hexlet'
   spec.description = 'A small analogue of simple_form gem from a student of Hexlet'
   spec.homepage = 'https://github.com/amshkv/rails-project-lvl1'
+  spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.1.2'
 
   spec.metadata['allowed_push_host'] = 'https://github.com/amshkv/rails-project-lvl1'
