@@ -2,9 +2,9 @@ install:
 	bundle install
 
 lint:
-	rake rubocop
+	bundle exec rake rubocop
 
 test:
-	rake test
+	bunle exec rake test
 
 .PHONY: test
