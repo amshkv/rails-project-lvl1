@@ -2,4 +2,5 @@ install:
 	bundle install
 
 lint:
-	bundle exec rubocop
+	rake rubocop
+
