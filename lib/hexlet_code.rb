@@ -5,4 +5,10 @@ module HexletCode
   class Error < StandardError; end
 
   autoload :Tag, 'hexlet_code/tag'
+
+  def self.form_for(entity, **options)
+    url = options[:url] || '#'
+
+    Tag.build('form', action: url, method: 'post')
+  end
 end
