@@ -42,6 +42,38 @@ class TestHexletCode < Minitest::Test
     assert form == resulted_html
   end
 
+  def test_submit_without_value
+    user = User.new name: 'rob', job: 'hexlet'
+    resulted_html = ['<form action="#" method="post">',
+                     '<input name="name" type="text" value="rob" class="lala-jopa">',
+                     '<textarea name="job" cols="20" rows="10">hexlet</textarea>',
+                     '<input type="submit" value="Save">',
+                     '</form>'].join
+
+    form = HexletCode.form_for user do |f|
+      f.input :name, class: 'lala-jopa'
+      f.input :job, as: :text, rows: 10
+      f.submit
+    end
+    assert form == resulted_html
+  end
+
+  def test_submit_with_value
+    user = User.new name: 'rob', job: 'hexlet'
+    resulted_html = ['<form action="#" method="post">',
+                     '<input name="name" type="text" value="rob" class="lala-jopa">',
+                     '<textarea name="job" cols="20" rows="10">hexlet</textarea>',
+                     '<input type="submit" value="Wow">',
+                     '</form>'].join
+
+    form = HexletCode.form_for user do |f|
+      f.input :name, class: 'lala-jopa'
+      f.input :job, as: :text, rows: 10
+      f.submit 'Wow'
+    end
+    assert form == resulted_html
+  end
+
   def test_form_without_field
     user = User.new
     assert_raises NoMethodError do

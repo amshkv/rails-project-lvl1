@@ -31,4 +31,8 @@ module HexletCode
       @inputs << Tag.build('input', name:, type: 'text', value:, **options)
     end
   end
+
+  def self.submit(value = 'Save', **options)
+    @inputs << Tag.build('input', type: 'submit', value:, **options)
+  end
 end
