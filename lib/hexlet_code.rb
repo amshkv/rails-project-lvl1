@@ -22,6 +22,7 @@ module HexletCode
   def self.input(name, **options)
     @inputs ||= []
     value = @entity.public_send(name) || ''
+    @inputs << Tag.build('label', for: name) { name.capitalize }
     if options[:as] == :text
       options.delete(:as)
       defaults = { cols: 20, rows: 40 }

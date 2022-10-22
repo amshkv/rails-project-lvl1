@@ -17,7 +17,9 @@ class TestHexletCode < Minitest::Test
   def test_with_block
     user = User.new name: 'rob'
     resulted_html = ['<form action="#" method="post">',
+                     '<label for="name">Name</label>',
                      '<input name="name" type="text" value="rob">',
+                     '<label for="job">Job</label>',
                      '<input name="job" type="text" value="">',
                      '</form>'].join
 
@@ -31,7 +33,9 @@ class TestHexletCode < Minitest::Test
   def test_with_options
     user = User.new name: 'rob', job: 'hexlet'
     resulted_html = ['<form action="#" method="post">',
+                     '<label for="name">Name</label>',
                      '<input name="name" type="text" value="rob" class="lala-jopa">',
+                     '<label for="job">Job</label>',
                      '<textarea name="job" cols="20" rows="10">hexlet</textarea>',
                      '</form>'].join
 
@@ -45,7 +49,9 @@ class TestHexletCode < Minitest::Test
   def test_submit_without_value
     user = User.new name: 'rob', job: 'hexlet'
     resulted_html = ['<form action="#" method="post">',
+                     '<label for="name">Name</label>',
                      '<input name="name" type="text" value="rob" class="lala-jopa">',
+                     '<label for="job">Job</label>',
                      '<textarea name="job" cols="20" rows="10">hexlet</textarea>',
                      '<input type="submit" value="Save">',
                      '</form>'].join
@@ -61,7 +67,9 @@ class TestHexletCode < Minitest::Test
   def test_submit_with_value
     user = User.new name: 'rob', job: 'hexlet'
     resulted_html = ['<form action="#" method="post">',
+                     '<label for="name">Name</label>',
                      '<input name="name" type="text" value="rob" class="lala-jopa">',
+                     '<label for="job">Job</label>',
                      '<textarea name="job" cols="20" rows="10">hexlet</textarea>',
                      '<input type="submit" value="Wow">',
                      '</form>'].join
