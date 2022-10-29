@@ -24,10 +24,9 @@ module HexletCode
     value = @entity.public_send(name) || ''
     @inputs << Tag.build('label', for: name) { name.capitalize }
     if options[:as] == :text
-      options.delete(:as)
       defaults = { cols: 20, rows: 40 }
-      options = defaults.merge!(options)
-      @inputs << Tag.build('textarea', name:, **options) { value }
+      options_with_defaults = defaults.merge(options.except(:as))
+      @inputs << Tag.build('textarea', name:, **options_with_defaults) { value }
     else
       @inputs << Tag.build('input', name:, type: 'text', value:, **options)
     end
