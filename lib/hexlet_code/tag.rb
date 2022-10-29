@@ -6,11 +6,9 @@ module HexletCode
 
     def self.build(tag, **options)
       attributes = options.map { |key, value| " #{key}=\"#{value}\"" }.join
-      if ELEMENTS_WITHOUT_END_TAG.include?(tag)
-        "<#{tag}#{attributes}>"
-      else
-        "<#{tag}#{attributes}>#{yield if block_given?}</#{tag}>"
-      end
+      return "<#{tag}#{attributes}>" if ELEMENTS_WITHOUT_END_TAG.include?(tag)
+
+      "<#{tag}#{attributes}>#{yield if block_given?}</#{tag}>"
     end
   end
 end
