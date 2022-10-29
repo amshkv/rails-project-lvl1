@@ -6,10 +6,12 @@ module HexletCode
 
   def self.form_for(entity, **options)
     @entity = entity
-    url = options[:url] || '#'
-    @inputs = []
+    action = options[:url] || '#'
+    # TODO: разобраться как правильно собирать опции, чтобы не править тесты
+    options_with_defaults = options.except(:url).merge(action:, method: :post)
 
-    Tag.build('form', action: url, method: 'post') do
+    Tag.build('form', **options_with_defaults) do
+      @inputs = []
       if block_given?
         yield self
         @inputs.join

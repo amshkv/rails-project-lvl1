@@ -12,6 +12,9 @@ class TestHexletCode < Minitest::Test
 
     form_with_url = HexletCode.form_for user, url: '/users'
     assert form_with_url == '<form action="/users" method="post"></form>'
+
+    form_with_url_and_class = HexletCode.form_for user, url: '/users', class: 'user-form'
+    assert form_with_url_and_class == '<form class="user-form" action="/users" method="post"></form>'
   end
 
   def test_with_block
