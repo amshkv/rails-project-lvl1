@@ -8,23 +8,21 @@ class TestHexletCode < Minitest::Test
     user = User.new
 
     form_without_url = HexletCode.form_for user
-    assert form_without_url == '<form action="#" method="post"></form>'
+    resulted_form_without_url = load_fixture('form_without_url.html')
+    assert form_without_url == resulted_form_without_url
 
     form_with_url = HexletCode.form_for user, url: '/users'
-    assert form_with_url == '<form action="/users" method="post"></form>'
+    resulted_form_with_url = load_fixture('form_with_url.html')
+    assert form_with_url == resulted_form_with_url
 
     form_with_url_and_class = HexletCode.form_for user, url: '/users', class: 'user-form'
-    assert form_with_url_and_class == '<form class="user-form" action="/users" method="post"></form>'
+    resulted_form_with_url_and_class = load_fixture('form_with_url_and_class.html')
+    assert form_with_url_and_class == resulted_form_with_url_and_class
   end
 
   def test_with_block
     user = User.new name: 'rob'
-    resulted_html = ['<form action="#" method="post">',
-                     '<label for="name">Name</label>',
-                     '<input name="name" type="text" value="rob">',
-                     '<label for="job">Job</label>',
-                     '<input name="job" type="text" value="">',
-                     '</form>'].join
+    resulted_html = load_fixture('form_with_block.html')
 
     form = HexletCode.form_for user do |f|
       f.input :name
@@ -35,12 +33,7 @@ class TestHexletCode < Minitest::Test
 
   def test_with_options
     user = User.new name: 'rob', job: 'hexlet'
-    resulted_html = ['<form action="#" method="post">',
-                     '<label for="name">Name</label>',
-                     '<input name="name" type="text" value="rob" class="lala-jopa">',
-                     '<label for="job">Job</label>',
-                     '<textarea name="job" cols="20" rows="10">hexlet</textarea>',
-                     '</form>'].join
+    resulted_html = load_fixture('form_with_options.html')
 
     form = HexletCode.form_for user do |f|
       f.input :name, class: 'lala-jopa'
@@ -51,13 +44,7 @@ class TestHexletCode < Minitest::Test
 
   def test_submit_without_value
     user = User.new name: 'rob', job: 'hexlet'
-    resulted_html = ['<form action="#" method="post">',
-                     '<label for="name">Name</label>',
-                     '<input name="name" type="text" value="rob" class="lala-jopa">',
-                     '<label for="job">Job</label>',
-                     '<textarea name="job" cols="20" rows="10">hexlet</textarea>',
-                     '<input type="submit" value="Save">',
-                     '</form>'].join
+    resulted_html = load_fixture('form_without_submit_value.html')
 
     form = HexletCode.form_for user do |f|
       f.input :name, class: 'lala-jopa'
@@ -69,13 +56,7 @@ class TestHexletCode < Minitest::Test
 
   def test_submit_with_value
     user = User.new name: 'rob', job: 'hexlet'
-    resulted_html = ['<form action="#" method="post">',
-                     '<label for="name">Name</label>',
-                     '<input name="name" type="text" value="rob" class="lala-jopa">',
-                     '<label for="job">Job</label>',
-                     '<textarea name="job" cols="20" rows="10">hexlet</textarea>',
-                     '<input type="submit" value="Wow">',
-                     '</form>'].join
+    resulted_html = load_fixture('form_with_submit_value.html')
 
     form = HexletCode.form_for user do |f|
       f.input :name, class: 'lala-jopa'

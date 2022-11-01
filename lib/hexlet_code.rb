@@ -14,7 +14,8 @@ module HexletCode
       @inputs = []
       if block_given?
         yield self
-        @inputs.join
+        resulted_inputs_html = @inputs.unshift('').join("\n\t")
+        "#{resulted_inputs_html}\n"
       end
     end
   end
