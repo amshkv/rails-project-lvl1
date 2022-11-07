@@ -3,37 +3,13 @@
 require_relative 'hexlet_code/version'
 module HexletCode
   autoload :Tag, 'hexlet_code/tag'
+  autoload :Builder, 'hexlet_code/builder'
+  autoload :Renderer, 'hexlet_code/renderer'
 
-  def self.form_for(entity, **options)
-    @entity = entity
-    action = options[:url] || '#'
-    # TODO: разобраться как правильно собирать опции, чтобы не править тесты
-    options_with_defaults = options.except(:url).merge(action:, method: :post)
-
-    Tag.build('form', **options_with_defaults) do
-      @inputs = []
-      if block_given?
-        yield self
-        resulted_inputs_html = @inputs.unshift('').join("\n\t")
-        "#{resulted_inputs_html}\n"
-      end
-    end
-  end
-
-  def self.input(name, **options)
-    @inputs ||= []
-    value = @entity.public_send(name) || ''
-    @inputs << Tag.build('label', for: name) { name.capitalize }
-    if options[:as] == :text
-      defaults = { cols: 20, rows: 40 }
-      options_with_defaults = defaults.merge(options.except(:as))
-      @inputs << Tag.build('textarea', name:, **options_with_defaults) { value }
-    else
-      @inputs << Tag.build('input', name:, type: 'text', value:, **options)
-    end
-  end
-
-  def self.submit(value = 'Save', **options)
-    @inputs << Tag.build('input', type: 'submit', value:, **options)
+  def self.form_for(entity, **form_options)
+    form = Builder.new(entity, form_options)
+    yield form if block_given?
+    builded_form = form.build
+    Renderer.new(builded_form).render
   end
 end
