@@ -6,6 +6,5 @@ require 'hexlet_code'
 require 'minitest/autorun'
 
 def load_fixture(filename)
-  # TODO: временно поставил chomp, потом можно пересохранить файлы без переноса строки, а пока хз как правильно
-  File.read(File.dirname(__FILE__) + "/fixtures/#{filename}").chomp
+  File.read(File.dirname(__FILE__) + "/fixtures/#{filename}")
 end
