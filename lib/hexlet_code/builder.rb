@@ -12,13 +12,12 @@ module HexletCode
 
     def input(name, **options)
       value = @entity.public_send(name) || ''
-      options_with_default_as = { as: :input }.merge(options)
-      @components << { name:, value:, options: options_with_default_as }
+      type = options[:as] || :input
+      @components << { name:, value:, type:, options: options.except(:as) }
     end
 
     def submit(value = 'Save', **options)
-      options_with_default_as = { as: :submit }.merge(options)
-      @components << { value:, options: options_with_default_as }
+      @components << { value:, type: :submit, options: }
     end
   end
 end

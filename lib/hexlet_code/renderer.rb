@@ -26,10 +26,9 @@ module HexletCode
     end
 
     def render_component(component)
-      as_option = component[:options][:as]
-      type = as_option.to_s.capitalize
+      type = component[:type].to_s.capitalize
       # NOTE: вариант без active_support
-      # tag = Object.const_get("HexletCode::Components::#{type}").new(component).render
+      # element = Object.const_get("HexletCode::Components::#{type}").new(component).render
       element = "HexletCode::Components::#{type}".constantize.new(component)
       element.render
     end

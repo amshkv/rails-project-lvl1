@@ -5,7 +5,7 @@ module HexletCode
     class Base
       def initialize(component)
         @name = component[:name]
-        @options = component[:options].except(:as)
+        @options = component[:options]
         @value = component[:value]
       end
 
