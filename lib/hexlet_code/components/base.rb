@@ -7,6 +7,7 @@ module HexletCode
         @name = component[:name]
         @options = component[:options]
         @value = component[:value]
+        @label = component[:label]
       end
 
       def tag
@@ -18,7 +19,9 @@ module HexletCode
       end
 
       def render
-        [label, tag].join("\n\t")
+        return [label, tag].join("\n\t") if @label
+
+        tag
       end
     end
   end
