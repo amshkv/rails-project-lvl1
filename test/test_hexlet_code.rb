@@ -7,17 +7,13 @@ class TestHexletCode < Minitest::Test
   def test_without_block
     user = User.new
 
-    form_without_url = HexletCode.form_for user
-    resulted_form_without_url = load_fixture('form_without_url.html')
-    assert form_without_url == resulted_form_without_url
+    form_without_options = HexletCode.form_for user
+    resulted_form_without_options = load_fixture('form_without_options.html')
+    assert form_without_options == resulted_form_without_options
 
-    form_with_url = HexletCode.form_for user, url: '/users'
-    resulted_form_with_url = load_fixture('form_with_url.html')
-    assert form_with_url == resulted_form_with_url
-
-    form_with_url_and_class = HexletCode.form_for user, url: '/users', class: 'user-form'
-    resulted_form_with_url_and_class = load_fixture('form_with_url_and_class.html')
-    assert form_with_url_and_class == resulted_form_with_url_and_class
+    form_with_options = HexletCode.form_for user, url: '/users', class: 'user-form'
+    resulted_form_with_options = load_fixture('form_with_options.html')
+    assert form_with_options == resulted_form_with_options
   end
 
   def test_with_block
@@ -31,9 +27,9 @@ class TestHexletCode < Minitest::Test
     assert form == resulted_html
   end
 
-  def test_with_options
+  def test_with_block_options
     user = User.new name: 'rob', job: 'hexlet'
-    resulted_html = load_fixture('form_with_options.html')
+    resulted_html = load_fixture('form_with_block_options.html')
 
     form = HexletCode.form_for user do |f|
       f.input :name, class: 'lala-jopa'
