@@ -6,7 +6,7 @@ module HexletCode
       def tag
         defaults = { cols: 20, rows: 40 }
         options = defaults.merge(@options_without_as)
-        Tag.build('textarea', name:, **options) { value }
+        Tag.build('textarea', name: @name, **options) { @value }
       end
     end
   end
