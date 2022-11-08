@@ -11,11 +11,11 @@ module HexletCode
     end
 
     def render
-      form_options = @builder[:form_options]
+      form_options = @builder.form_options
       action = form_options[:url] || '#'
       form_options_with_defaults = form_options.except(:url).merge(action:, method: :post)
       Tag.build('form', **form_options_with_defaults) do
-        components = @builder[:components]
+        components = @builder.components
         if components.any?
           result = components.map do |component|
             render_component(component)

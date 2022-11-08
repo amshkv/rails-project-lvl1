@@ -2,17 +2,12 @@
 
 module HexletCode
   class Builder
+    attr_reader :form_options, :components
+
     def initialize(entity, form_options)
       @entity = entity
       @form_options = form_options
       @components = []
-    end
-
-    def build
-      {
-        form_options: @form_options,
-        components: @components
-      }
     end
 
     def input(name, **options)
