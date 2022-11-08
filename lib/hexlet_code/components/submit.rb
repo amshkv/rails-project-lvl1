@@ -4,7 +4,7 @@ module HexletCode
   module Components
     class Submit < Base
       def tag
-        Tag.build('input', type: 'submit', value: @value, **@options_without_as)
+        Tag.build('input', type: 'submit', value: @value, **@options)
       end
 
       def render

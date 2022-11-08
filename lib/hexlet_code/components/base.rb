@@ -5,13 +5,12 @@ module HexletCode
     class Base
       def initialize(component)
         @name = component[:name]
-        options = component[:options]
+        @options = component[:options].except(:as)
         @value = component[:value]
-        @options_without_as = options.except(:as)
       end
 
       def tag
-        Tag.build('input', name: @name, type: 'text', value: @value, **@options_without_as)
+        Tag.build('input', name: @name, type: 'text', value: @value, **@options)
       end
 
       def label

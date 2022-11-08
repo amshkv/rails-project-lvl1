@@ -5,8 +5,8 @@ module HexletCode
     class Text < Base
       def tag
         defaults = { cols: 20, rows: 40 }
-        options = defaults.merge(@options_without_as)
-        Tag.build('textarea', name: @name, **options) { @value }
+        options_with_defaults = defaults.merge(@options)
+        Tag.build('textarea', name: @name, **options_with_defaults) { @value }
       end
     end
   end
