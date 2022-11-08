@@ -13,7 +13,7 @@ module HexletCode
     def render
       form_options = @builder.form_options
       action = form_options[:url] || '#'
-      form_options_with_defaults = form_options.except(:url).merge(action:, method: :post)
+      form_options_with_defaults = { action:, method: :post }.merge(form_options.except(:url))
       Tag.build('form', **form_options_with_defaults) do
         components = @builder.components
         if components.any?

@@ -11,7 +11,7 @@ class TestHexletCode < Minitest::Test
     resulted_form_without_options = load_fixture('form_without_options.html')
     assert form_without_options == resulted_form_without_options
 
-    form_with_options = HexletCode.form_for user, url: '/users', class: 'user-form'
+    form_with_options = HexletCode.form_for user, url: '/users', class: 'user-form', method: 'get'
     resulted_form_with_options = load_fixture('form_with_options.html')
     assert form_with_options == resulted_form_with_options
   end
