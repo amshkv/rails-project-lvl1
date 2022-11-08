@@ -10,7 +10,7 @@ module HexletCode
       end
 
       def tag
-        Tag.build('input', name: @name, type: 'text', value: @value, **@options)
+        raise NotImplementedError
       end
 
       def label
