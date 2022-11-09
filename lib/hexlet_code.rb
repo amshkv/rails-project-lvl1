@@ -9,7 +9,6 @@ module HexletCode
   def self.form_for(entity, **form_options)
     form = Builder.new(entity, form_options)
     yield form if block_given?
-    builded_form = form
-    Renderer.new(builded_form).render
+    Renderer.new(form).render
   end
 end
