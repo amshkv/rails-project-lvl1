@@ -13,11 +13,13 @@ module HexletCode
     def input(name, **options)
       value = @entity.public_send(name) || ''
       type = options[:as] || :input
-      @components << { name:, value:, type:, label: true, options: options.except(:as) }
+      label = options[:label] || true
+      @components << { name:, value:, type:, label:, options: options.except(:as, :label) }
     end
 
     def submit(value = 'Save', **options)
-      @components << { value:, type: :submit, label: false, options: }
+      label = options[:label] || false
+      @components << { value:, type: :submit, label:, options: options.except(:label) }
     end
   end
 end
