@@ -20,15 +20,18 @@ User = Struct.new(:name, :job, :gender, keyword_init: true)
 user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
 HexletCode.form_for user do |f|
-  f.input :name
-  f.input :job, as: :text
+  f.input :name, class: 'lala-jopa'
+  f.input :job, as: :text, rows: 10, label: false
+  f.submit 'Wow'
 end
 ```
 
 ```html
-<form action="#" method="post">
-  <input name="name" type="text" value="rob">
-  <textarea name="job" cols="20" rows="40">hexlet</textarea>
+<form action="/user" method="post" class="user-form">
+  <label for="name">Name</label>
+  <input name="name" type="text" value="rob" class="lala-jopa">
+  <textarea name="job" cols="20" rows="10">hexlet</textarea>
+  <input type="submit" value="Wow">
 </form>
 ```
 ## Development
