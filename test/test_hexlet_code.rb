@@ -32,8 +32,8 @@ class TestHexletCode < Minitest::Test
     resulted_html = load_fixture('form_with_block_options.html')
 
     form = HexletCode.form_for user do |f|
-      f.input :name, class: 'lala-jopa'
-      f.input :job, as: :text, rows: 10
+      f.input :name, class: 'lala-jopa', label: false
+      f.input :job, as: :text, rows: 10, label: false
     end
     assert form == resulted_html
   end
