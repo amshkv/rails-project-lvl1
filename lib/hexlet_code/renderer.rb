@@ -19,8 +19,8 @@ module HexletCode
         if components.any?
           result = components.map do |component|
             render_component(component)
-          end.unshift('').join("\n\t")
-          "#{result}\n"
+          end.join("\n\t")
+          "\n\t#{result}\n"
         end
       end
     end
