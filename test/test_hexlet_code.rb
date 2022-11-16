@@ -9,11 +9,11 @@ class TestHexletCode < Minitest::Test
 
     form_without_options = HexletCode.form_for user
     resulted_form_without_options = load_fixture('form_without_options.html')
-    assert form_without_options == resulted_form_without_options
+    assert { form_without_options == resulted_form_without_options }
 
     form_with_options = HexletCode.form_for user, url: '/users', class: 'user-form', method: 'get'
     resulted_form_with_options = load_fixture('form_with_options.html')
-    assert form_with_options == resulted_form_with_options
+    assert { form_with_options == resulted_form_with_options }
   end
 
   def test_with_block
@@ -24,7 +24,7 @@ class TestHexletCode < Minitest::Test
       f.input :name
       f.input :job
     end
-    assert form == resulted_html
+    assert { form == resulted_html }
   end
 
   def test_with_block_options
@@ -35,7 +35,7 @@ class TestHexletCode < Minitest::Test
       f.input :name, class: 'lala-jopa', label: false
       f.input :job, as: :text, rows: 10, label: false
     end
-    assert form == resulted_html
+    assert { form == resulted_html }
   end
 
   def test_submit_without_value
@@ -47,7 +47,7 @@ class TestHexletCode < Minitest::Test
       f.input :job, as: :text, rows: 10
       f.submit
     end
-    assert form == resulted_html
+    assert { form == resulted_html }
   end
 
   def test_submit_with_value
@@ -59,7 +59,7 @@ class TestHexletCode < Minitest::Test
       f.input :job, as: :text, rows: 10
       f.submit 'Wow'
     end
-    assert form == resulted_html
+    assert { form == resulted_html }
   end
 
   def test_form_without_field
