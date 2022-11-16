@@ -71,4 +71,21 @@ class TestHexletCode < Minitest::Test
       end
     end
   end
+
+  def test_form_with_select
+    user = User.new job: 'hexlet'
+    resulted_html = load_fixture('form_with_select.html')
+
+    form_with_1d_collection = HexletCode.form_for user do |f|
+      f.input :job, as: :select, collection: %w[hexlet code-basics]
+      f.submit 'Wow'
+    end
+
+    form_with_2d_collection = HexletCode.form_for user do |f|
+      f.input :job, as: :select, collection: [%w[hexlet hexlet], %w[code-basics code-basics]]
+      f.submit 'Wow'
+    end
+    assert { form_with_1d_collection == resulted_html }
+    assert { form_with_2d_collection == resulted_html }
+  end
 end
