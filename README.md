@@ -34,6 +34,45 @@ end
   <input type="submit" value="Wow">
 </form>
 ```
+
+You can also select tag on form, for example:
+
+```rb
+User = Struct.new(:name, :job, :gender, keyword_init: true)
+user = User.new job: 'hexlet'
+
+HexletCode.form_for user do |f|
+  f.input :job, as: :select, collection: [%w[hexlet hexlet], %w[code-basics code-basics]]
+  f.submit 'Wow'
+end
+```
+
+```html
+<form action="#" method="post">
+  <label for="job">Job</label>
+  <select name="job">
+    <option value="hexlet" selected="selected">hexlet</option>
+    <option value="code-basics">code-basics</option>
+  </select>
+  <input type="submit" value="Wow">
+</form>
+```
+
+**Notice**
+
+The select takes a collection from an array of strings or symbols, or an array of arrays. if the type does not match, the select returns an empty array.
+
+```rb
+  # bad
+  collection: [] # []
+  collection: { a: 'b', b: 'a' } # []
+  # good
+  collection: %w[hexlet code-basics] # [['hexlet', 'hexlet'], ['code-basics', 'code-basics']]
+  collection: %i[hexlet code-basics] # [['hexlet', 'hexlet'], ['code-basics', 'code-basics']]
+  collection: [%w[hexlet hexlet], %w[code-basics code-basics]] # [['hexlet', 'hexlet'], ['code-basics', 'code-basics']]
+```
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
