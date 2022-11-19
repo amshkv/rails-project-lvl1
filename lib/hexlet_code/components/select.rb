@@ -5,7 +5,7 @@ module HexletCode
     class Select < Base
       def tag
         Tag.build('select', name: @name, **@options.except(:collection)) do
-          collection = generate_collection(@options[:collection])
+          collection = normalize_collection(@options[:collection])
           if collection.any?
             options = generate_options(collection).join("\n\t\t")
             "\n\t\t#{options}\n\t"
@@ -15,7 +15,7 @@ module HexletCode
 
       private
 
-      def generate_collection(collection)
+      def normalize_collection(collection)
         first = collection.first
         return collection if first.is_a?(Array)
         return collection.map { |element| [element, element] } if first.is_a?(String) || first.is_a?(Symbol)
